@@ -1,0 +1,36 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Loula challenge API",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts -w",
+    "build": "tsc",
+    "postbuild": "copyfiles schema.sql dist/",
+    "start": "node dist/src/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "loula",
+    "challenge",
+    "api"
+  ],
+  "author": "Matias Calvo",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "copyfiles": "^2.4.1",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "tsx": "^4.9.4",
+    "typescript": "^5.4.5",
+    "url": "^0.11.3"
+  }
+}
