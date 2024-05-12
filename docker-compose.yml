@@ -1,0 +1,36 @@
+services:
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    environment:
+      HOST: api
+  api:
+    build: ./api
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      DB_HOST: database
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: loula_challenge_username
+      POSTGRES_PASSWORD: loula_challenge_password
+      POSTGRES_DB: loula_challenge_database
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -q -h database -p 5432 -U loula_challenge_username",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
