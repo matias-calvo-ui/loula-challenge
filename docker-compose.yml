@@ -15,7 +15,12 @@ services:
       database:
         condition: service_healthy
     environment:
+      PORT: 8080
       DB_HOST: database
+      DB_USERNAME: loula_challenge_username
+      DB_PASSWORD: loula_challenge_password
+      DB_PORT: 5432
+      DB_DATABASE: loula_challenge_database
   database:
     image: postgres
     restart: always
